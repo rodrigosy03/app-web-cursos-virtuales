@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Agregar Curso</title>
+	<!-- Agregar enlaces a los estilos de Bootstrap -->
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+	<!-- Barra de navegación -->
+	<nav th:replace="~{navbar :: navbar}"></nav>
+
+	<!-- Alertas -->
+	<div th:replace="~{flash :: flash}"></div>
+
+	<div class="container">
+		<h1>Agregar Curso</h1>
+		<form th:action="@{/cursos/guardar}" th:object="${curso}" method="POST">
+<!-- 			<div class="form-group"> -->
+<!-- 				<label for="idCurso">ID:</label> <input type="text" -->
+<!-- 					contenteditable="false" class="form-control" id="idCurso" -->
+<!-- 					th:field="*{idCurso}" /> -->
+<!-- 			</div> -->
+			<div class="form-group">
+				<label for="nombre">Nombre del curso:</label> <input type="text"
+					class="form-control" id="nombre" th:field="*{nombre}" />
+			</div>
+			<div class="form-group">
+				<label for="fechaInicio">Fecha de Inicio:</label> 
+				<input type="datetime-local" class="form-control" id="fechaInicio" th:field="*{fechaInicio}" pattern="yyyy-MM-dd'T'HH:mm"/>
+			</div>
+			<div class="form-group">
+				<label for="fechaFinalizacion">Fecha de Finalización:</label> 
+				<input type="datetime-local" class="form-control" id="fechaFinalizacion" th:field="*{fechaFinalizacion}" pattern="yyyy-MM-dd'T'HH:mm"/>
+			</div>
+			<div class="form-group">
+				<label for="profesores">Profesores:</label> 
+					<select class="form-control" id="idProfesor" th:field="*{profesor.idProfesor}">
+					<option th:each="profesor : ${listaProfesores}"
+						th:value="${profesor.idProfesor}" th:text="${profesor.nombre + ' ' + profesor.apellido}">
+					</option>
+				</select>
+			</div>
+
+			<a th:href="@{/cursos/listar}" class="btn btn-secondary">Volver</a>
+			<button type="submit" class="btn btn-primary">Guardar</button>
+		</form>
+	</div>
+
+	<!-- Agregar scripts de Bootstrap -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

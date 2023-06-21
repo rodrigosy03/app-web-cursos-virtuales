@@ -1,0 +1,90 @@
+/* Estilos generales */
+body {
+	font-family: Arial, sans-serif;
+	color: #333;
+}
+
+.container-fluid {
+	padding: 20px;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.mt-4 {
+	margin-top: 4rem;
+}
+
+.mb-2 {
+	margin-bottom: 2rem;
+}
+
+.mb-4 {
+	margin-bottom: 4rem;
+}
+
+.py-4 {
+	padding-top: 4rem;
+	padding-bottom: 4rem;
+}
+
+/* Estilos de la sección principal */
+h1 {
+	font-size: 2.5rem;
+	font-weight: bold;
+	margin-bottom: 1rem;
+}
+
+p {
+	font-size: 1.2rem;
+	margin-bottom: 2rem;
+}
+
+.btn-primary {
+	background-color: #ff0000;
+	border-color: #ff0000;
+}
+
+/* Estilos de la sección de cursos */
+h2 {
+	font-size: 2rem;
+	font-weight: bold;
+	margin-bottom: 2rem;
+}
+
+.form-row {
+	align-items: flex-end;
+}
+
+.custom-select {
+	width: 100%;
+}
+
+/* Estilos de los cards de cursos */
+.card {
+	width: 300px;
+	border: none;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card-img-top {
+	height: 150px;
+	object-fit: cover;
+}
+
+.card-title {
+	font-size: 1.5rem;
+	font-weight: bold;
+	margin-bottom: 1rem;
+}
+
+.card-text {
+	font-size: 1.2rem;
+	margin-bottom: 1.5rem;
+}
+
+/* Estilos del pie de página */
+footer {
+	background-color: #f8f8f8;
+}

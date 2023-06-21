@@ -1,0 +1,28 @@
+.error-container {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.error-container img {
+    width: 200px;
+}
+
+.error-container h1 {
+    font-size: 24px;
+}
+
+.error-container p {
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+.error-container a {
+    font-size: 16px;
+    margin-top: 20px;
+    display: inline-block;
+    text-decoration: none;
+    color: #000;
+    border: 1px solid #000;
+    padding: 5px 10px;
+    border-radius: 5px;
+}

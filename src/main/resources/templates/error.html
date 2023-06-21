@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Error de permisos</title>
+    <link rel="stylesheet" th:href="@{/css/error.css}" />
+</head>
+<body>
+<div class="error-container">
+    <img src="/img/error.png" alt="Error" />
+    <h1>Error de permisos</h1>
+    <p th:text="${errorMessage}"></p>
+    <a th:href="@{/home}">Volver a la página principal</a>
+</div>
+</body>
+</html>

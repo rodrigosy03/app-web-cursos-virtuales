@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Tu Aula Virtual</title>
+	<!-- Enlaces a los archivos CSS y JS de Bootstrap -->
+	<link rel="stylesheet" type="text/css" href="../css/index.css">
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+	<!-- Barra de navegación -->
+	<nav th:replace="~{navbar :: navbar}"></nav>
+
+	<!-- Sección principal -->
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-8">
+				<h1 class="mt-4">Aprende y crece con nuestros cursos virtuales</h1>
+				<p>Descubre una amplia variedad de cursos online con profesores
+					expertos. ¡Regístrate o comienza a explorar nuestros cursos ahora!</p>
+				<a href="/cursos" class="btn btn-primary">Empezar</a>
+			</div>
+			<div class="col-lg-4">
+				<img src="../img/banner_inicio.jpg" alt="Banner de inicio"
+					class="img-fluid">
+			</div>
+		</div>
+	</div>
+
+	<!-- Sección de cursos -->
+	<div class="container-fluid mt-4">
+		<h2 class="text-center">Nuestros cursos destacados</h2>
+		<!-- Barra de filtros -->
+		<div class="row justify-content-center">
+			<div class="col-lg-6">
+				<form>
+					<div class="form-row">
+						<div class="col-md-4 mb-2">
+							<select class="custom-select">
+								<option selected>Todas las categorías</option>
+								<option value="1">Categoría 1</option>
+								<option value="2">Categoría 2</option>
+								<option value="3">Categoría 3</option>
+							</select>
+						</div>
+						<div class="col-md-4 mb-2">
+							<select class="custom-select">
+								<option selected>Todos los niveles</option>
+								<option value="1">Nivel 1</option>
+								<option value="2">Nivel 2</option>
+								<option value="3">Nivel 3</option>
+							</select>
+						</div>
+						<div class="col-md-4 mb-2">
+							<button type="submit" class="btn btn-primary">Filtrar</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<!-- Cards de cursos -->
+		<div class="row mt-4">
+			<div class="col-lg-4 mb-4">
+				<div class="card">
+					<img src="../img/curso_2.jpg" class="card-img-top"
+						alt="Imagen del curso 1">
+					<div class="card-body">
+						<h5 class="card-title">Título del Curso</h5>
+						<p class="card-text">Descripción breve del curso.</p>
+						<a href="#" class="btn btn-primary">Ver curso</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Pie de página -->
+	<footer class="bg-light text-center py-4 mt-4">
+		<p>Tu Aula Virtual &copy; 2023. Todos los derechos reservados.</p>
+	</footer>
+
+	<!-- Agrega los enlaces a los archivos JS de Bootstrap y jQuery -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
