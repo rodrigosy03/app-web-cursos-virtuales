@@ -17,27 +17,26 @@
 	
 	<div class="container">
 		<h1>Agregar Profesor</h1>
-		<form action="#" th:action="@{/profesores/guardar}"
-			th:object="${profesor}" method="POST">
+		<form action="#" th:action="@{/profesores/guardar}" th:object="${profesor}" method="POST">
 			<div class="form-group">
-				<label for="idProfesor">ID:</label> <input type="text"
-					class="form-control" id="idProfesor" th:field="*{idProfesor}" />
+				<label for="nombre">Nombre:</label> 
+				<input type="text" class="form-control" id="nombre" th:field="*{nombre}" />
+				<small class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}"  th:errors="*{nombre}"></small>	
 			</div>
 			<div class="form-group">
-				<label for="nombre">Nombre:</label> <input type="text"
-					class="form-control" id="nombre" th:field="*{nombre}" />
+				<label for="apellido">Apellido:</label> 
+				<input type="text" class="form-control" id="apellido" th:field="*{apellido}" />
+				<small class="form-text text-danger" th:if="${#fields.hasErrors('apellido')}"  th:errors="*{apellido}"></small>	
 			</div>
 			<div class="form-group">
-				<label for="apellido">Apellido:</label> <input type="text"
-					class="form-control" id="apellido" th:field="*{apellido}" />
+				<label for="email">Email:</label> 
+				<input type="email" class="form-control" id="email" th:field="*{email}" />
+				<small class="form-text text-danger" th:if="${#fields.hasErrors('email')}"  th:errors="*{email}"></small>	
 			</div>
 			<div class="form-group">
-				<label for="email">Email:</label> <input type="email"
-					class="form-control" id="email" th:field="*{email}" />
-			</div>
-			<div class="form-group">
-				<label for="contraseña">Contraseña:</label> <input type="password"
-					class="form-control" id="contraseña" th:field="*{contrasena}" />
+				<label for="contraseña">Contraseña:</label> 
+				<input type="password" class="form-control" id="contraseña" th:field="*{contrasena}" placeholder="Mínimo 6 caracteres"/>
+				<small class="form-text text-danger" th:if="${#fields.hasErrors('contrasena')}"  th:errors="*{contrasena}"></small>	
 			</div>
 			<a th:href="@{/profesores/listar}" class="btn btn-secondary">Volver</a>
 			<button type="submit" class="btn btn-primary">Guardar</button>

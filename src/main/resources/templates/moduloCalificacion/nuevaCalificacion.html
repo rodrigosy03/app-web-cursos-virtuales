@@ -19,11 +19,6 @@
 	<div class="container">
 		<h1>Agregar Calificacion</h1>
 		<form th:action="@{/calificaciones/guardar}" th:object="${calificacion}" method="POST">
-<!-- 			<div class="form-group"> -->
-<!-- 				<label for="idCalificacion">ID:</label> <input type="text" -->
-<!-- 					contenteditable="false" class="form-control" id="idCalificacion" -->
-<!-- 					th:field="*{idCalificacion}" /> -->
-<!-- 			</div> -->
 			
 			<div class="form-group">
 				<label for="estudiantes">Estudiantes:</label> 
@@ -33,6 +28,7 @@
 					</option>
 				</select>
 			</div>
+			
 			<div class="form-group">
 				<label for="cursos">Cursos:</label> 
 					<select class="form-control" id="idCurso" th:field="*{curso.idCurso}">
@@ -41,9 +37,11 @@
 					</option>
 				</select>
 			</div>
+			
 			<div class="form-group">
 				<label for="nota">Nota:</label> 
 				<input type="number" step="0.01" class="form-control" id="nota" th:field="*{nota}"/>
+				<small class="form-text text-danger" th:if="${#fields.hasErrors('nota')}" th:errors="*{nota}"></small>
 			</div>
 			
 			<a th:href="@{/calificaciones/listar}" class="btn btn-secondary">Volver</a>

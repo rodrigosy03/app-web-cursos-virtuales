@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +24,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Validated
 @RequestMapping("/cursos")
 @Controller
 public class CursoWebController {
@@ -50,8 +53,11 @@ public class CursoWebController {
 	}
 
 	@PostMapping("/guardar")
-	public String crearCurso(@ModelAttribute("curso") Curso curso, @RequestParam("fechaInicio") String fechaInicioStr,
-            @RequestParam("fechaFinalizacion") String fechaFinalizacionStr) {
+	public String crearCurso(@Validated @ModelAttribute("curso") Curso curso, @RequestParam("fechaInicio") String fechaInicioStr, @RequestParam("fechaFinalizacion") String fechaFinalizacionStr, BindingResult result) {
+		if (result.hasErrors()) {
+	        return "/moduloCurso/nuevoCurso";
+	    }
+		
 		// Realizar conversión de tipo de fecha y hora
 	    LocalDateTime fechaInicio = LocalDateTime.parse(fechaInicioStr);
 	    curso.setFechaInicio(fechaInicio);

@@ -3,6 +3,10 @@ package com.example.cursosvirtuales.entities;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
 import java.io.Serializable;
 
 @Data
@@ -27,6 +31,9 @@ public class Calificacion implements Serializable {
     
     @Basic(optional = false)
     @Column(name = "nota")
+    @NotNull
+    @Min(value = 0)
+    @Max(value = 20)
     private float nota;
 
     @JoinColumn(name = "idEstudiante", referencedColumnName = "idEstudiante")

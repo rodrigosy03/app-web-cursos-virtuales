@@ -2,11 +2,12 @@ package com.example.cursosvirtuales.web.controllers;
 
 import com.example.cursosvirtuales.entities.Profesor;
 import com.example.cursosvirtuales.services.ProfesorService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,9 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import java.util.List;
 
+@Validated
 @RequestMapping("/profesores")
 @Controller
 public class ProfesorWebController {
@@ -39,10 +40,13 @@ public class ProfesorWebController {
 	}
 
 	@PostMapping("/guardar")
-	public String crearProfesor(@ModelAttribute("profesor") Profesor profesor) {
+	public String crearProfesor(@Validated @ModelAttribute("profesor") Profesor profesor, BindingResult result) {
+		if (result.hasErrors()) {
+	        return "/moduloProfesor/nuevoProfesor";
+	    }
+		
 		servicio.crear(profesor);
 		return "redirect:/profesores/listar";
-
 	}
 
 	@RequestMapping(value = "/editar/{id}", method = {RequestMethod.GET, RequestMethod.PUT})

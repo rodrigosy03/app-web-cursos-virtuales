@@ -30,16 +30,16 @@ public class EstudianteService {
 
     public Estudiante actualizar(Estudiante EstudianteActualizar) {
 
-        Estudiante EstudianteActual = estudianteRepository.findById(EstudianteActualizar.getIdEstudiante()).get();
+        Estudiante estudianteActual = estudianteRepository.findById(EstudianteActualizar.getIdEstudiante()).get();
 
-        EstudianteActual.setIdEstudiante(EstudianteActualizar.getIdEstudiante());
-        EstudianteActual.setNombre(EstudianteActualizar.getNombre());
-        EstudianteActual.setApellido(EstudianteActualizar.getApellido());
-        EstudianteActual.setEmail(EstudianteActualizar.getEmail());
-        EstudianteActual.setContrasena(EstudianteActualizar.getContrasena());
+        estudianteActual.setIdEstudiante(EstudianteActualizar.getIdEstudiante());
+        estudianteActual.setNombre(EstudianteActualizar.getNombre());
+        estudianteActual.setApellido(EstudianteActualizar.getApellido());
+        estudianteActual.setEmail(EstudianteActualizar.getEmail());
+        estudianteActual.setContrasena(EstudianteActualizar.getContrasena());
 
-        Estudiante peliculaActualizado = estudianteRepository.save(EstudianteActual);
-        return peliculaActualizado;
+        Estudiante estudianteActualizado = estudianteRepository.save(estudianteActual);
+        return estudianteActualizado;
     }
 
     public void eliminarEstudiante(Integer id) {

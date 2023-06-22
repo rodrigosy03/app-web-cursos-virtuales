@@ -25,5 +25,4 @@ public class Inscripcion implements Serializable {
     @JoinColumn(name = "idCurso", referencedColumnName = "idCurso")
     @ManyToOne(optional = false)
     private Curso curso;
-
 }

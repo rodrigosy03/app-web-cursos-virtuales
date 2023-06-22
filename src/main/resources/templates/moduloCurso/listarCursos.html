@@ -31,6 +31,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Curso</th>
+                    <th>Descipción</th>
                     <th>Inicia</th>
                     <th>Finaliza</th>
                     <th>Profesor</th>
@@ -41,6 +42,7 @@
                 <tr th:each="curso : ${listaCursos}">
                     <td th:text="${curso.idCurso}"></td>
                     <td th:text="${curso.nombre}"></td>
+                    <td th:text="${curso.descripcion}" style="max-width: 20rem"></td>
                     <td th:text="${#temporals.format(curso.fechaInicio, 'dd/MM/yyyy HH:mm')}"></td>
 					<td th:text="${#temporals.format(curso.fechaFinalizacion, 'dd/MM/yyyy HH:mm')}"></td>
                     <td th:text="${curso.profesor.nombre + ' ' + curso.profesor.apellido}"></td>

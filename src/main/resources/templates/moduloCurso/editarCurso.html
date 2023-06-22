@@ -18,26 +18,33 @@
 	
 	<div class="container">
 		<h1>
-			Editar Curso: <span th:text="${curso.nombre}"></span>
+			Editar Curso con ID: <span th:text="${curso.idCurso}"></span>
 		</h1>
 		
 		<form th:action="@{/cursos/guardar}" th:object="${curso}" method="POST">
 			<div class="form-group">
-				<label for="idCurso">ID:</label> 
-				<input type="text" readonly="readonly" class="form-control" id="idCurso" th:field="*{idCurso}" />
-			</div>
-			<div class="form-group">
 				<label for="nombre">Nombre del curso:</label> 
 				<input type="text" class="form-control" id="nombre" th:field="*{nombre}" />
+				<small class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></small>
 			</div>
+<!-- 			DESCRIPCION DEL CURSO -->
+			<div class="form-group">
+			    <label for="descripcion">Descripción:</label>
+			    <textarea class="form-control" id="descripcion" th:field="*{descripcion}" maxlength="150" placeholder="Máximo 200 caraceteres"></textarea>
+			    <small class="form-text text-danger" th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"></small>
+			</div>
+			
 			<div class="form-group">
 			    <label for="fechaInicio">Fecha de Inicio:</label>
 			    <input type="datetime-local" class="form-control" id="fechaInicio" name="fechaInicio" th:value="${#temporals.format(curso.fechaInicio, 'yyyy-MM-dd''T''HH:mm')}">
 			</div>
+			
 			<div class="form-group">
 			    <label for="fechaFinalizacion">Fecha de Finalización:</label>
 			    <input type="datetime-local" class="form-control" id="fechaFinalizacion" name="fechaFinalizacion" th:value="${#temporals.format(curso.fechaFinalizacion, 'yyyy-MM-dd''T''HH:mm')}">
+				<small class="form-text text-danger" th:if="${#fields.hasErrors('fechaFinalizacion')}" th:errors="*{fechaFinalizacion}"></small>
 			</div>
+			
 			<div class="form-group">
 			    <label for="profesores">Profesores:</label> 
 			    <select class="form-control" id="idProfesor" th:field="*{profesor.idProfesor}">

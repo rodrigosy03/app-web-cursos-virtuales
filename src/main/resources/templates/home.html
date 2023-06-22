@@ -26,15 +26,16 @@
 			<div class="row align-items-center">
 				<div class="col ml-5 pr-3">
 					<h1 class="h1-tittle">
-						<span class="block mb-1">Aprende y crece con nuestros</span> <span
-							class="block span-resalt">cursos virtuales</span>
+						<span class="block mb-1 span-resalt" style="font-size: 1.2em">Aprende y crece</span>
+						<span class="block mb-1">con nuestros</span> 
+						<span class="block mb-1">cursos virtuales</span>
 					</h1>
 					<p class="block my-4">
 						Descubre una amplia variedad de cursos online <br> con
 						profesores expertos. <br> ¡Regístrate o comienza a explorar
 						nuestros cursos ahora!
 					</p>
-					<a class="btn btn-primary btn-lg" th:href="@{/cursos}">Empezar</a>
+					<a class="btn btn-primary btn-lg" onclick="scrollToSection('section-2')" href="#section-2">Ver los cursos disponibles</a>
 				</div>
 
 				<div class="col">
@@ -46,9 +47,9 @@
 	</section>
 
 	<!-- Sección de cursos -->
-	<section class="section-2">
+	<section class="section-2" id="section-2">
 		<div class="container-fluid mt-4">
-			<h2 class="text-center">Nuestros cursos</h2>
+			<h2 class="text-center">NUESTRO CURSOS</h2>
 
 			<!-- Barra de filtros -->
 			<div class="row justify-content-center">
@@ -83,7 +84,7 @@
 			<article class="container-fluid">
 			    <div class="row mx-auto justify-content-start">
 			        <div th:each="curso : ${listaCursos}" class="col-md-3 mb-4">
-			            <div class="card" style="height: 24rem">
+			            <div class="card" style="height: 24.5rem">
 			                <img src="../img/curso_2.jpg" class="card-img-top" alt="Imagen del curso 1">
 			                <div class="card-body">
 			                    <h5 class="card-title" th:text="${curso.nombre}">Título del Curso</h5>
@@ -104,6 +105,19 @@
 		<p>Aula Virtual &copy; 2023. Todos los derechos reservados.</p>
 	</footer>
 
+	<script>
+	    function scrollToSection(sectionId) {
+	        const section = document.getElementById(sectionId);
+	        section.scrollIntoView({ behavior: 'smooth' });
+	    }
+	</script>
+	
+	<style>
+	    html {
+	        scroll-behavior: smooth;
+	    }
+	</style>
+	
 	<!-- Enlaces a los archivos JS de Bootstrap y jQuery -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"

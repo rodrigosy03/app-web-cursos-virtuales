@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +24,7 @@ import com.example.cursosvirtuales.services.CursoService;
 
 import java.util.List;
 
+@Validated
 @RequestMapping("/calificaciones")
 @Controller
 public class CalificacionesWebController {
@@ -56,8 +59,11 @@ public class CalificacionesWebController {
 	}
 
 	@PostMapping("/guardar")
-	public String crearCalificacion(@ModelAttribute("calificacion") Calificacion calificacion) {
-
+	public String crearCalificacion(@Validated @ModelAttribute("calificacion") Calificacion calificacion, BindingResult result) {
+		if (result.hasErrors()) {
+	        return "/moduloCalificacion/nuevaCalificacion";
+	    }
+				
 		servicio.crear(calificacion);
 	    
 		return "redirect:/calificaciones/listar";
