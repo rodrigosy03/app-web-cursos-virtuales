@@ -29,6 +29,9 @@ public class Curso implements Serializable {
 	@Column(name = "nombre")
 	private String nombre;
 
+	@Column(name = "descripcion")
+	private String descripcion;
+	
 	@Column(name = "fechaInicio")
 	private LocalDateTime fechaInicio;
 

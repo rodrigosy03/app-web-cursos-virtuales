@@ -1,33 +1,48 @@
 /* Estilos generales */
 body {
-	font-family: Arial, sans-serif;
+	font-family: sans-serif;
 	color: #333;
+	font-size: 16px
+}
+
+.section-1{
+	background-color: #f8f8f8;	
+}
+.section-1 .h1-tittle{
+	font-family: Inter, sans-serif;
+	font-weight: 800;
+}
+.section-1 .block{
+    display: block;
+}
+.section-1 .span-resalt{
+	color: orange;
+}
+.section-1 .custom-img{
+	width: 95%;
+	height: auto;
 }
 
 .container-fluid {
 	padding: 20px;
 }
 
-.text-center {
-	text-align: center;
+.section-2 .description { 
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3; /* Número de líneas que deseas mostrar */
+    max-height: 3.5rem; /* Altura máxima permitida */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: .8rem;
 }
 
-.mt-4 {
-	margin-top: 4rem;
-}
 
-.mb-2 {
-	margin-bottom: 2rem;
-}
-
-.mb-4 {
-	margin-bottom: 4rem;
-}
-
-.py-4 {
-	padding-top: 4rem;
-	padding-bottom: 4rem;
-}
+/* .description { */
+/*     overflow: hidden; */
+/*     text-overflow: ellipsis; */
+/*     white-space: nowrap; */
+/* } */
 
 /* Estilos de la sección principal */
 h1 {
