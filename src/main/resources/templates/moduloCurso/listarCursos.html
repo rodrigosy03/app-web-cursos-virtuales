@@ -19,53 +19,61 @@
     <nav th:replace="~{navbar :: navbar}"></nav>
 
     <!-- Alertas -->
-    <div th:replace="~{flash :: flash}"></div>
-
-    <div class="my-2 py-2 rounded row">
+    <div class="row my-3 mr-3">
         <!-- Barra de navegación -->
-        <div class="col">
+        <div class="col col-lg-2">
             <div th:replace="~{sidebar :: sidebar}"></div>
         </div>
 
-        <div class="col-lg-9 mr-5" style="background-color: #f8f9fa">
-            <div class="row align-items-center">
-                <div class="col-md-6">
-                    <h1 class="title">Listar Cursos</h1>
-                </div>
-                <div class="col-md-6 text-right">
-                    <a th:href="@{/cursos/agregar}" class="btn btn-primary">Agregar Curso</a>
-                </div>
+        <div class="col">
+            <div class="row">
+                <!-- Alertas -->
+                <div th:replace="~{flash :: flash}"></div>
             </div>
 
-            <table class="table table-bordered table-hover mt-2 rounded" style="background-color: #f8f9fa">
-                <thead style="background-color: #D5D5D5">
-                    <tr>
-                        <th>ID</th>
-                        <th>Curso</th>
-                        <th>Descipción</th>
-                        <th>Inicia</th>
-                        <th>Finaliza</th>
-                        <th>Profesor</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="curso : ${listaCursos}">
-                        <td th:text="${curso.idCurso}"></td>
-                        <td th:text="${curso.nombre}"></td>
-                        <td th:text="${curso.descripcion}" style="max-width: 20rem"></td>
-                        <td th:text="${#temporals.format(curso.fechaInicio, 'dd/MM/yyyy HH:mm')}"></td>
-                        <td th:text="${#temporals.format(curso.fechaFinalizacion, 'dd/MM/yyyy HH:mm')}"></td>
-                        <td th:text="${curso.profesor.nombre + ' ' + curso.profesor.apellido}"></td>
-                        <td>
-                            <a th:href="@{/cursos/editar/{id}(id=${curso.idCurso})}"
-                                class="btn btn-primary btn-sm">Editar</a>
-                            <a th:href="@{/cursos/eliminar/{id}(id=${curso.idCurso})}" class="btn btn-danger btn-sm"
-                                onclick="return confirmarEliminacion()">Eliminar</a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="row">
+                <div class="col rounded border" style="background-color: #f8f9fa">
+                    <div class="row align-items-center pt-1">
+                        <div class="col-md-6">
+                            <h1 class="title">Listar Cursos</h1>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <a th:href="@{/cursos/agregar}" class="btn btn-primary">Agregar Curso</a>
+                        </div>
+                    </div>
+
+                    <table class="table table-bordered table-hover mt-2 rounded" style="background-color: #f8f9fa">
+                        <thead style="background-color: #D5D5D5">
+                            <tr>
+                                <th>ID</th>
+                                <th>Curso</th>
+                                <th>Descipción</th>
+                                <th>Inicia</th>
+                                <th>Finaliza</th>
+                                <th>Profesor</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="curso : ${listaCursos}">
+                                <td th:text="${curso.idCurso}"></td>
+                                <td th:text="${curso.nombre}"></td>
+                                <td th:text="${curso.descripcion}" style="max-width: 20rem"></td>
+                                <td th:text="${#temporals.format(curso.fechaInicio, 'dd/MM/yyyy HH:mm')}"></td>
+                                <td th:text="${#temporals.format(curso.fechaFinalizacion, 'dd/MM/yyyy HH:mm')}"></td>
+                                <td th:text="${curso.profesor.nombre + ' ' + curso.profesor.apellido}"></td>
+                                <td>
+                                    <a th:href="@{/cursos/editar/{id}(id=${curso.idCurso})}"
+                                        class="btn btn-primary btn-sm">Editar</a>
+                                    <a th:href="@{/cursos/eliminar/{id}(id=${curso.idCurso})}"
+                                        class="btn btn-danger btn-sm"
+                                        onclick="return confirmarEliminacion()">Eliminar</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 

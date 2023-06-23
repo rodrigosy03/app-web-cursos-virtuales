@@ -18,50 +18,59 @@
     <!-- Barra de navegación -->
     <nav th:replace="~{navbar :: navbar}"></nav>
 
-    <!-- Alertas -->
-    <div th:replace="~{flash :: flash}"></div>
-
-    <div class="my-2 py-2 rounded row">
+    <div class="row my-3 mr-3">
         <!-- Barra de navegación -->
-        <div class="col">
+        <div class="col col-lg-2">
             <div th:replace="~{sidebar :: sidebar}"></div>
         </div>
 
-        <div class="col-lg-9 mr-5" style="background-color: #f8f9fa">
-            <div class="row align-items-center">
-                <div class="col-md-6">
-                    <h1 class="title">Listar Profesores</h1>
-                </div>
-                <div class="col-md-6 text-right">
-                    <a th:href="@{/profesores/agregar}" class="btn btn-primary">Agregar Profesor</a>
+        <div class="col">
+            <div class="row">
+                <!-- Alertas -->
+                <div th:replace="~{flash :: flash}"></div>
+            </div>
+
+            <div class="row">
+                <div class="col rounded border" style="background-color: #f8f9fa">
+                    <div class="row align-items-center pt-1">
+                        <div class="col-md-6">
+                            <h1 class="title">Listar Profesores</h1>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <a th:href="@{/profesores/agregar}" class="btn btn-primary">Agregar Profesor</a>
+                        </div>
+                    </div>
+
+                    <table class="table table-bordered table-hover mt-2 rounded" style="background-color: #f8f9fa">
+                        <thead style="background-color: #D5D5D5">
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Email</th>
+                                <th>Contraseña</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="profesor : ${listaProfesores}">
+                                <td th:text="${profesor.idProfesor}"></td>
+                                <td th:text="${profesor.nombre}"></td>
+                                <td th:text="${profesor.apellido}"></td>
+                                <td th:text="${profesor.email}"></td>
+                                <td th:text="${profesor.contrasena}"></td>
+                                <td>
+                                    <a th:href="@{/profesores/editar/{id}(id=${profesor.idProfesor})}"
+                                        class="btn btn-primary btn-sm">Editar</a>
+                                    <a th:href="@{/profesores/eliminar/{id}(id=${profesor.idProfesor})}"
+                                        class="btn btn-danger btn-sm"
+                                        onclick="return confirmarEliminacion()">Eliminar</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-            
-            <table class="table table-bordered table-hover mt-2 rounded" style="background-color: #f8f9fa">
-                <thead style="background-color: #D5D5D5">
-                    <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Apellido</th>
-                        <th>Email</th>
-                        <th>Contraseña</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="profesor : ${listaProfesores}">
-                        <td th:text="${profesor.idProfesor}"></td>
-                        <td th:text="${profesor.nombre}"></td>
-                        <td th:text="${profesor.apellido}"></td>
-                        <td th:text="${profesor.email}"></td>
-                        <td th:text="${profesor.contrasena}"></td>
-                        <td>
-                            <a th:href="@{/profesores/editar/{id}(id=${profesor.idProfesor})}" class="btn btn-primary btn-sm">Editar</a>
-                            <a th:href="@{/profesores/eliminar/{id}(id=${profesor.idProfesor})}" class="btn btn-danger btn-sm" onclick="return confirmarEliminacion()">Eliminar</a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
         </div>
     </div>
 

@@ -29,7 +29,7 @@
 
 		<div class="col-lg-9 mr-5" style="background-color: #f8f9fa">
 			<h1>Agregar Curso</h1>
-			<form th:action="@{/cursos/guardar}" th:object="${curso}" method="POST">
+			<form th:action="@{/cursos/guardar}" th:object="${curso}" method="post">
 				<!-- 			NOMBRE DEL CURSO -->
 				<div class="form-group">
 					<label for="nombre">Nombre del curso:</label>
@@ -49,13 +49,13 @@
 				<div class="form-group">
 					<label for="fechaInicio">Fecha de Inicio:</label>
 					<input type="datetime-local" class="form-control" id="fechaInicio" th:field="*{fechaInicio}"
-						pattern="yyyy-MM-dd'T'HH:mm" />
+						pattern="yyyy-MM-dd'T'HH:mm" required/>
 				</div>
 
 				<div class="form-group">
 					<label for="fechaFinalizacion">Fecha de Finalización:</label>
 					<input type="datetime-local" class="form-control" id="fechaFinalizacion"
-						th:field="*{fechaFinalizacion}" pattern="yyyy-MM-dd'T'HH:mm" />
+						th:field="*{fechaFinalizacion}" pattern="yyyy-MM-dd'T'HH:mm" required>
 					<small class="form-text text-danger" th:if="${#fields.hasErrors('fechaFinalizacion')}"
 						th:errors="*{fechaFinalizacion}"></small>
 				</div>

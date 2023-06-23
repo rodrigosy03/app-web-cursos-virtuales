@@ -29,7 +29,7 @@
 
 		<div class="col-lg-9 mr-5" style="background-color: #f8f9fa">
 			<h1>Agregar Profesor</h1>
-			<form action="#" th:action="@{/profesores/guardar}" th:object="${profesor}" method="POST">
+			<form action="#" th:action="@{/profesores/guardar}" th:object="${profesor}" method="post">
 				<div class="form-group">
 					<label for="nombre">Nombre:</label>
 					<input type="text" class="form-control" id="nombre" th:field="*{nombre}" />

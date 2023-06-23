@@ -29,13 +29,14 @@
 
 		<div class="col-lg-9 mr-5" style="background-color: #f8f9fa">
 			<h1>Agregar Calificacion</h1>
-			<form th:action="@{/calificaciones/guardar}" th:object="${calificacion}" method="POST">
+			<form th:action="@{/calificaciones/guardar}" th:object="${calificacion}" method="post">
 
 				<div class="form-group">
 					<label for="estudiantes">Estudiantes:</label>
 					<select class="form-control" id="idEstudiante" th:field="*{estudiante.idEstudiante}">
-						<option th:each="estudiante : ${listaEstudiantes}" th:value="${estudiante.idEstudiante}"
-							th:text="${estudiante.nombre + ' ' + estudiante.apellido}">
+						<option th:each="estudiante : ${listaEstudiantes}"
+								th:value="${estudiante.idEstudiante}"
+								th:text="${estudiante.nombre + ' ' + estudiante.apellido}"
 						</option>
 					</select>
 				</div>
@@ -43,7 +44,9 @@
 				<div class="form-group">
 					<label for="cursos">Cursos:</label>
 					<select class="form-control" id="idCurso" th:field="*{curso.idCurso}">
-						<option th:each="curso : ${listaCursos}" th:value="${curso.idCurso}" th:text="${curso.nombre}">
+						<option th:each="curso : ${listaCursos}"
+								th:value="${curso.idCurso}"
+								th:text="${curso.nombre}"
 						</option>
 					</select>
 				</div>

@@ -40,11 +40,9 @@ public class Curso implements Serializable {
 	private String descripcion;
 	
 	@Column(name = "fechaInicio")
-	@NotNull
 	private LocalDateTime fechaInicio;
 
 	@Column(name = "fechaFinalizacion")
-	@NotNull
 	@Future
 	private LocalDateTime fechaFinalizacion;
 

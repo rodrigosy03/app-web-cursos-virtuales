@@ -56,7 +56,6 @@ public class InscripcionesWebController {
 
 	@PostMapping("/guardar")
 	public String crearInscripcion(@ModelAttribute("inscripcion") Inscripcion inscripcion, RedirectAttributes flash) {
-
 		servicio.crear(inscripcion);
 	    flash.addFlashAttribute("msgAgregado", "Calificación agregada correctamente.");
 		return "redirect:/inscripciones/listar";
