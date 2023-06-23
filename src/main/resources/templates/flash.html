@@ -1,8 +1,17 @@
 <div th:fragment="flash" class="container mt-2 rounded">
 	<div th:if="${success != null}">
-		<div class="alert alert-success alert-dismissible fade show"
-			role="alert">
-			<strong>Error:</strong> <span th:text="${success}"></span>
+		<div class="alert alert-success alert-dismissible fade show" role="alert">
+			<strong>Éxito:</strong> <span th:text="${success}"></span>
+			<button type="button" class="close" data-dismiss="alert"
+				aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+	</div>
+
+	<div th:if="${msgAgregado != null}">
+		<div class="alert alert-success alert-dismissible fade show" role="alert">
+			<strong>Éxito:</strong> <span th:text="${msgAgregado}"></span>
 			<button type="button" class="close" data-dismiss="alert"
 				aria-label="Close">
 				<span aria-hidden="true">&times;</span>
@@ -14,8 +23,7 @@
 		<div class="alert alert-danger alert-dismissible fade show"
 			role="alert">
 			<strong>Error:</strong> <span th:text="${error}"></span>
-			<button type="button" class="close" data-dismiss="alert"
-				aria-label="Close">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 				<span aria-hidden="true">&times;</span>
 			</button>
 		</div>

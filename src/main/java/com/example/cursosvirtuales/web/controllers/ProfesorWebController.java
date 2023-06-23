@@ -40,11 +40,12 @@ public class ProfesorWebController {
 	}
 
 	@PostMapping("/guardar")
-	public String crearProfesor(@Validated @ModelAttribute("profesor") Profesor profesor, BindingResult result) {
+	public String crearProfesor(@Validated @ModelAttribute("profesor") Profesor profesor, BindingResult result, RedirectAttributes flash) {
 		if (result.hasErrors()) {
 	        return "/moduloProfesor/nuevoProfesor";
 	    }
 		
+		flash.addFlashAttribute("msgAgregado", "Calificación agregada correctamente.");
 		servicio.crear(profesor);
 		return "redirect:/profesores/listar";
 	}

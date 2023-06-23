@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestro equipo</title>
+    <!-- Enlace a los estilos de Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/c7ba06f67b.js" crossorigin="anonymous"></script>
+    <style>
+        .team-member {
+            text-align: center;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 20px;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .team-member i {
+            font-size: 48px;
+            color: #007bff;
+        }
+
+        .team-member h3 {
+            margin-top: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .team-member p {
+            margin-top: 10px;
+            color: #666;
+        }
+
+        .team-member img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Barra de navegación -->
+    <nav th:replace="~{navbar :: navbar}"></nav>
+
+    <div class="container mt-3">
+        <h1 class="text-center"><strong>NUESTRO EQUIPO</strong></h1>
+        <div class="row justify-content-center">
+            <div class="col-lg-4 col-md-6 my-4">
+                <div class="team-member">
+                    <img src="https://placekitten.com/100/100" alt="Miembro del equipo">
+                    <h3>Rodrigo Sihues <br> Yanqui</h3>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 my-4">
+                <div class="team-member">
+                    <img src="https://placekitten.com/100/100" alt="Miembro del equipo">
+                    <h3>Integrante <br> 2</h3>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 my-4">
+                <div class="team-member">
+                    <img src="https://placekitten.com/100/100" alt="Miembro del equipo">
+                    <h3>Integrante <br> 3</h3>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 my-4">
+                <div class="team-member">
+                    <img src="https://placekitten.com/100/100" alt="Miembro del equipo">
+                    <h3>Integrante <br> 4</h3>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 my-4">
+                <div class="team-member">
+                    <img src="https://placekitten.com/100/100" alt="Miembro del equipo">
+                    <h3>Integrante <br> 5</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts de Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

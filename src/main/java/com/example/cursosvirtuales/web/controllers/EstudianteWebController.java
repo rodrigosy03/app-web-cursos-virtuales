@@ -40,11 +40,12 @@ public class EstudianteWebController {
 	}
 
 	@PostMapping("/guardar")
-	public String crearEstudiante(@Validated @ModelAttribute("estudiante") Estudiante estudiante, BindingResult result) {
+	public String crearEstudiante(@Validated @ModelAttribute("estudiante") Estudiante estudiante, BindingResult result, RedirectAttributes flash) {
 		if (result.hasErrors()) {
 	        return "/moduloEstudiante/nuevoEstudiante";
 	    }
 		
+		flash.addFlashAttribute("msgAgregado", "Calificación agregada correctamente.");
 		servicio.crear(estudiante);
 		return "redirect:/estudiantes/listar";
 	}

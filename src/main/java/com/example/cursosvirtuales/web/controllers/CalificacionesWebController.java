@@ -59,13 +59,13 @@ public class CalificacionesWebController {
 	}
 
 	@PostMapping("/guardar")
-	public String crearCalificacion(@Validated @ModelAttribute("calificacion") Calificacion calificacion, BindingResult result) {
+	public String crearCalificacion(@Validated @ModelAttribute("calificacion") Calificacion calificacion, BindingResult result, RedirectAttributes flash) {
 		if (result.hasErrors()) {
 	        return "/moduloCalificacion/nuevaCalificacion";
 	    }
-				
-		servicio.crear(calificacion);
-	    
+		
+		flash.addFlashAttribute("msgAgregado", "Calificación agregada correctamente.");
+		servicio.crear(calificacion);	    
 		return "redirect:/calificaciones/listar";
 	}
 
@@ -88,7 +88,7 @@ public class CalificacionesWebController {
 	public String eliminarCalificacion(@PathVariable("id") int id, RedirectAttributes flash) {
 	    try {
 	        servicio.eliminarCalificacion(id);
-	        flash.addFlashAttribute("success", "Calificación eliminado correctamente.");
+	        flash.addFlashAttribute("success", "Calificación eliminada correctamente.");
 	        return "redirect:/calificaciones/listar";
 	    } catch (DataIntegrityViolationException error) {
 	        flash.addFlashAttribute("error", "Esta calificación no se puede eliminar debido a restricciones de clave foránea.");

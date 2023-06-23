@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import com.example.cursosvirtuales.entities.Inscripcion;
 import com.example.cursosvirtuales.entities.Estudiante;
 import com.example.cursosvirtuales.entities.Curso;
@@ -56,10 +55,10 @@ public class InscripcionesWebController {
 	}
 
 	@PostMapping("/guardar")
-	public String crearInscripcion(@ModelAttribute("inscripcion") Inscripcion inscripcion) {
+	public String crearInscripcion(@ModelAttribute("inscripcion") Inscripcion inscripcion, RedirectAttributes flash) {
 
 		servicio.crear(inscripcion);
-	    
+	    flash.addFlashAttribute("msgAgregado", "Calificación agregada correctamente.");
 		return "redirect:/inscripciones/listar";
 	}
 

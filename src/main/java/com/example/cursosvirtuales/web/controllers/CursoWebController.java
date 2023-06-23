@@ -53,7 +53,7 @@ public class CursoWebController {
 	}
 
 	@PostMapping("/guardar")
-	public String crearCurso(@Validated @ModelAttribute("curso") Curso curso, @RequestParam("fechaInicio") String fechaInicioStr, @RequestParam("fechaFinalizacion") String fechaFinalizacionStr, BindingResult result) {
+	public String crearCurso(@Validated @ModelAttribute("curso") Curso curso, @RequestParam("fechaInicio") String fechaInicioStr, @RequestParam("fechaFinalizacion") String fechaFinalizacionStr, BindingResult result, RedirectAttributes flash) {
 		if (result.hasErrors()) {
 	        return "/moduloCurso/nuevoCurso";
 	    }
@@ -65,8 +65,8 @@ public class CursoWebController {
 	    LocalDateTime fechaFinalizacion = LocalDateTime.parse(fechaFinalizacionStr);
 	    curso.setFechaFinalizacion(fechaFinalizacion);
 
+		flash.addFlashAttribute("msgAgregado", "Calificación agregada correctamente.");
 		servicio.crear(curso);
-	    
 		return "redirect:/cursos/listar";
 	}
 
