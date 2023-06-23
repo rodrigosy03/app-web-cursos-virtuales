@@ -7,6 +7,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Validated
@@ -41,11 +44,25 @@ public class ProfesorWebController {
 
 	@PostMapping("/guardar")
 	public String crearProfesor(@Validated @ModelAttribute("profesor") Profesor profesor, BindingResult result, RedirectAttributes flash) {
-		if (result.hasErrors()) {
-	        return "/moduloProfesor/nuevoProfesor";
-	    }
-		
-		flash.addFlashAttribute("msgAgregado", "Calificación agregada correctamente.");
+		if (profesor.getIdProfesor() != 0 && servicio.existe(profesor.getIdProfesor())) {
+			if (result.hasErrors()) {
+				List<String> mensajesError = new ArrayList<>();
+				for (ObjectError error : result.getAllErrors()) {
+					mensajesError.add(error.getDefaultMessage());
+				}
+				flash.addFlashAttribute("errores", mensajesError);
+				// flash.addFlashAttribute("org.springframework.validation.BindingResult.profesor", result);
+				// flash.addFlashAttribute("estudiante", estudiante);
+				return "redirect:/profesores/editar/" + profesor.getIdProfesor();
+			}
+			flash.addFlashAttribute("msgActualizado", "Profesor actualizado correctamente.");
+		} else {
+			if (result.hasErrors()) {
+				return "/moduloProfesor/nuevoProfesor";
+			}
+			flash.addFlashAttribute("msgAgregado", "Profesor agregado correctamente.");
+		}
+
 		servicio.crear(profesor);
 		return "redirect:/profesores/listar";
 	}
@@ -55,6 +72,7 @@ public class ProfesorWebController {
 		ModelAndView mav = new ModelAndView("/moduloProfesor/editarProfesor");
 		Profesor profesor = servicio.buscarPorId(id);
 		mav.addObject("profesor", profesor);
+		mav.addObject("idProfesor", id);
 		return mav;
 	}
 

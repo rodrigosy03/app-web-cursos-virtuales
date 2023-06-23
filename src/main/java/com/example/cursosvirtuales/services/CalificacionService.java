@@ -56,4 +56,12 @@ public class CalificacionService {
 
         calificacionRepository.save(calificacionActual);
     }
+
+    public boolean existe(Integer id){
+        if (buscarPorId(id) != null){
+            return true;
+        }
+
+        return false;
+    }
 }

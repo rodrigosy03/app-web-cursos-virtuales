@@ -5,6 +5,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -21,6 +22,7 @@ import com.example.cursosvirtuales.services.CalificacionService;
 import com.example.cursosvirtuales.services.EstudianteService;
 import com.example.cursosvirtuales.services.CursoService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Validated
@@ -60,17 +62,38 @@ public class CalificacionesWebController {
 	@PostMapping("/guardar")
 	public String crearCalificacion(@Validated @ModelAttribute("calificacion") Calificacion calificacion,
 			BindingResult result, RedirectAttributes flash, Model model) {
-		if (result.hasErrors()) {
+		if (calificacion.getIdCalificacion() != 0 && servicio.existe(calificacion.getIdCalificacion())) {
+			if (result.hasErrors()) {
+				List<Curso> cursos = servicioCurso.buscarTodo();
+				model.addAttribute("listaCursos", cursos);
+
+				List<Estudiante> estudiantes = servicioEstudiante.buscarTodo();
+				model.addAttribute("listaEstudiantes", estudiantes);
+
+				List<String> mensajesError = new ArrayList<>();
+				for (ObjectError error : result.getAllErrors()) {
+					mensajesError.add(error.getDefaultMessage());
+				}
+				flash.addFlashAttribute("errores", mensajesError);
+				// flash.addFlashAttribute("org.springframework.validation.BindingResult.calificacion",
+				// result);
+				// flash.addFlashAttribute("estudiante", estudiante);
+				return "redirect:/calificaciones/editar/" + calificacion.getIdCalificacion();
+			}
+			flash.addFlashAttribute("msgActualizado", "Calificación actualizada correctamente.");
+		} else {
 			List<Curso> cursos = servicioCurso.buscarTodo();
 			model.addAttribute("listaCursos", cursos);
 
 			List<Estudiante> estudiantes = servicioEstudiante.buscarTodo();
 			model.addAttribute("listaEstudiantes", estudiantes);
 
-			return "/moduloCalificacion/nuevaCalificacion";
+			if (result.hasErrors()) {
+				return "/moduloCalificacion/nuevaCalificacion";
+			}
+			flash.addFlashAttribute("msgAgregado", "Calificación agregada correctamente.");
 		}
 
-		flash.addFlashAttribute("msgAgregado", "Calificación agregada correctamente.");
 		servicio.crear(calificacion);
 		return "redirect:/calificaciones/listar";
 	}
@@ -86,6 +109,8 @@ public class CalificacionesWebController {
 
 		List<Estudiante> estudiantes = servicioEstudiante.buscarTodo();
 		mav.addObject("listaEstudiantes", estudiantes);
+
+		mav.addObject("idCalificacion", id);
 
 		return mav;
 	}

@@ -46,4 +46,12 @@ public class EstudianteService {
         estudianteRepository.deleteById(id);
     }
 
+    public boolean existe(Integer id){
+        if (buscarPorId(id) != null){
+            return true;
+        }
+
+        return false;
+    }
+
 }

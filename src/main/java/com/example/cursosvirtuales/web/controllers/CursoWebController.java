@@ -1,6 +1,7 @@
 package com.example.cursosvirtuales.web.controllers;
 
 import com.example.cursosvirtuales.entities.Curso;
+import com.example.cursosvirtuales.entities.Estudiante;
 import com.example.cursosvirtuales.entities.Profesor;
 import com.example.cursosvirtuales.services.CursoService;
 import com.example.cursosvirtuales.services.ProfesorService;
@@ -10,6 +11,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -22,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Validated
@@ -56,11 +59,31 @@ public class CursoWebController {
 	public String crearCurso(@Validated @ModelAttribute("curso") Curso curso, BindingResult result,
 			RedirectAttributes flash, @RequestParam("fechaInicio") String fechaInicioStr,
 			@RequestParam("fechaFinalizacion") String fechaFinalizacionStr, Model model) {
-		if (result.hasErrors()) {
+		if (curso.getIdCurso() != 0 && servicio.existe(curso.getIdCurso())) {
+			if (result.hasErrors()) {
+				List<Profesor> profesores = servicioProfesor.buscarTodo();
+				model.addAttribute("listaProfesores", profesores);
+
+				List<String> mensajesError = new ArrayList<>();
+				for (ObjectError error : result.getAllErrors()) {
+					mensajesError.add(error.getDefaultMessage());
+				}
+				flash.addFlashAttribute("errores", mensajesError);
+				// flash.addFlashAttribute("org.springframework.validation.BindingResult.curso",
+				// result);
+				// flash.addFlashAttribute("curso", curso);
+				return "redirect:/cursos/editar/" + curso.getIdCurso();
+			}
+			flash.addFlashAttribute("msgActualizado", "Curso actualizado correctamente.");
+		} else {
 			List<Profesor> profesores = servicioProfesor.buscarTodo();
 			model.addAttribute("listaProfesores", profesores);
 
-			return "/moduloCurso/nuevoCurso";
+
+			if (result.hasErrors()) {
+				return "/moduloCurso/nuevoCurso";
+			}
+			flash.addFlashAttribute("msgAgregado", "Curso agregado correctamente.");
 		}
 
 		// Realizar conversión de tipo de fecha y hora
@@ -70,7 +93,6 @@ public class CursoWebController {
 		LocalDateTime fechaFinalizacion = LocalDateTime.parse(fechaFinalizacionStr);
 		curso.setFechaFinalizacion(fechaFinalizacion);
 
-		flash.addFlashAttribute("msgAgregado", "Calificación agregada correctamente.");
 		servicio.crear(curso);
 		return "redirect:/cursos/listar";
 	}
@@ -83,6 +105,8 @@ public class CursoWebController {
 
 		List<Profesor> profesores = servicioProfesor.buscarTodo();
 		mav.addObject("listaProfesores", profesores);
+
+		mav.addObject("idCurso", id);
 
 		return mav;
 	}

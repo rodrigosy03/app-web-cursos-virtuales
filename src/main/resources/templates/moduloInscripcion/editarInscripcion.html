@@ -18,45 +18,53 @@
 	<!-- Barra de navegación -->
 	<nav th:replace="~{navbar :: navbar}"></nav>
 
-	<!-- Alertas -->
-	<div th:replace="~{flash :: flash}"></div>
-
-	<div class="my-2 py-2 rounded row">
+	<div class="row my-3 mr-3">
 		<!-- Barra de navegación -->
-		<div class="col">
+		<div class="col col-lg-2">
 			<div th:replace="~{sidebar :: sidebar}"></div>
 		</div>
 
-		<div class="col-lg-9 mr-5" style="background-color: #f8f9fa">
-			<h1>
-				Editar Inscripcion: <span th:text="${idInscripcion}"></span>
-			</h1>
+		<div class="col">
+			<div class="row">
+				<!-- Alertas -->
+				<div th:replace="~{flash :: flash}"></div>
+			</div>
 
-			<form th:action="@{/inscripciones/guardar}" th:object="${inscripcion}" method="POST">
-				<div class="form-group">
-					<label for="idInscripcion">ID:</label>
-					<input type="text" readonly="readonly" class="form-control" id="idInscripcion"
-						th:field="*{idInscripcion}" />
-				</div>
-				<div class="form-group">
-					<label for="estudiantes">Estudiante:</label>
-					<select class="form-control" id="idEstudiante" th:field="*{estudiante.idEstudiante}">
-						<option th:each="estudiante : ${listaEstudiantes}" th:value="${estudiante.idEstudiante}"
-							th:text="${estudiante.nombre + ' ' + estudiante.apellido}"
-							th:selected="${estudiante.idEstudiante == inscripcion.estudiante.idEstudiante}"></option>
-					</select>
-				</div>
-				<div class="form-group">
-					<label for="cursos">Cursos:</label>
-					<select class="form-control" id="idCurso" th:field="*{curso.idCurso}">
-						<option th:each="curso : ${listaCursos}" th:value="${curso.idCurso}" th:text="${curso.nombre}"
-							th:selected="${curso.idCurso == inscripcion.curso.idCurso}"></option>
-					</select>
-				</div>
+			<div class="row">
+				<div class="col rounded border" style="background-color: #f8f9fa">
+					<h1>
+						Editar Inscripcion: <span th:text="${idInscripcion}"></span>
+					</h1>
 
-				<button type="submit" class="btn btn-primary">Guardar</button>
-				<a href="/inscripciones/listar" class="btn btn-danger">Cancelar</a>
-			</form>
+					<form th:action="@{/inscripciones/guardar}" th:object="${inscripcion}" method="POST">
+						<div class="form-group">
+							<label for="idInscripcion">ID:</label>
+							<input type="text" readonly="readonly" class="form-control" id="idInscripcion"
+								th:field="*{idInscripcion}" />
+						</div>
+						<div class="form-group">
+							<label for="estudiantes">Estudiante:</label>
+							<select class="form-control" id="idEstudiante" th:field="*{estudiante.idEstudiante}">
+								<option th:each="estudiante : ${listaEstudiantes}" th:value="${estudiante.idEstudiante}"
+									th:text="${estudiante.nombre + ' ' + estudiante.apellido}"
+									th:selected="${estudiante.idEstudiante == inscripcion.estudiante.idEstudiante}">
+								</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="cursos">Cursos:</label>
+							<select class="form-control" id="idCurso" th:field="*{curso.idCurso}">
+								<option th:each="curso : ${listaCursos}" th:value="${curso.idCurso}"
+									th:text="${curso.nombre}"
+									th:selected="${curso.idCurso == inscripcion.curso.idCurso}"></option>
+							</select>
+						</div>
+
+						<button type="submit" class="btn btn-primary">Guardar</button>
+						<a href="/inscripciones/listar" class="btn btn-danger">Cancelar</a>
+					</form>
+				</div>
+			</div>
 		</div>
 	</div>
 

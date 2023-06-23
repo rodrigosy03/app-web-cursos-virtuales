@@ -19,21 +19,21 @@ public class Estudiante implements Serializable {
     private int idEstudiante;
 
     @Column(name = "nombre")
-    @NotBlank
-    @Size(max = 20)
+    @NotBlank(message = "El nombre es obligatorio")
+    @Size(max = 20, message = "El nombre debe tener como maximo 20 caracteres")
     private String nombre;
 
     @Column(name = "apellido")
-    @NotBlank
-    @Size(max = 50)
+    @NotBlank(message = "El apellido es obligatorio")
+    @Size(max = 50, message = "El apellido debe tener como maximo 50 caracteres")
     private String apellido;
 
     @Column(name = "email")
-    @NotBlank
+    @NotBlank(message = "El correo electronico es obligatorio")
     private String email;
 
     @Column(name = "contraseña")
-    @NotBlank
-    @Size(min = 6)
+    @NotBlank(message = "La clave es obligatoria")
+    @Size(min = 6, message = "La clave debe tener al menos 6 caracteres")
     private String contrasena;
 }

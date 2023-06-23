@@ -41,4 +41,12 @@ public class InscripcionService {
     public void eliminarInscripcion(Integer id) {
         inscripcionRepository.deleteById(id);
     }
+
+    public boolean existe(Integer id){
+        if (buscarPorId(id) != null){
+            return true;
+        }
+
+        return false;
+    }
 }

@@ -18,46 +18,52 @@
 	<!-- Barra de navegación -->
 	<nav th:replace="~{navbar :: navbar}"></nav>
 
-	<!-- Alertas -->
-	<div th:replace="~{flash :: flash}"></div>
-
-	<div class="my-2 py-2 rounded row">
+	<div class="row my-3 mr-3">
 		<!-- Barra de navegación -->
-		<div class="col">
+		<div class="col col-lg-2">
 			<div th:replace="~{sidebar :: sidebar}"></div>
 		</div>
 
-		<div class="col-lg-9 mr-5" style="background-color: #f8f9fa">
-			<h1>Agregar Profesor</h1>
-			<form action="#" th:action="@{/profesores/guardar}" th:object="${profesor}" method="post">
-				<div class="form-group">
-					<label for="nombre">Nombre:</label>
-					<input type="text" class="form-control" id="nombre" th:field="*{nombre}" />
-					<small class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}"
-						th:errors="*{nombre}"></small>
+		<div class="col">
+			<div class="row">
+				<!-- Alertas -->
+				<div th:replace="~{flash :: flash}"></div>
+			</div>
+
+			<div class="row">
+				<div class="col rounded border" style="background-color: #f8f9fa">
+					<h1>Agregar Profesor</h1>
+					<form action="#" th:action="@{/profesores/guardar}" th:object="${profesor}" method="post">
+						<div class="form-group">
+							<label for="nombre">Nombre:</label>
+							<input type="text" class="form-control" id="nombre" th:field="*{nombre}" />
+							<small class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}"
+								th:errors="*{nombre}"></small>
+						</div>
+						<div class="form-group">
+							<label for="apellido">Apellido:</label>
+							<input type="text" class="form-control" id="apellido" th:field="*{apellido}" />
+							<small class="form-text text-danger" th:if="${#fields.hasErrors('apellido')}"
+								th:errors="*{apellido}"></small>
+						</div>
+						<div class="form-group">
+							<label for="email">Email:</label>
+							<input type="email" class="form-control" id="email" th:field="*{email}" />
+							<small class="form-text text-danger" th:if="${#fields.hasErrors('email')}"
+								th:errors="*{email}"></small>
+						</div>
+						<div class="form-group">
+							<label for="contraseña">Contraseña:</label>
+							<input type="password" class="form-control" id="contraseña" th:field="*{contrasena}"
+								placeholder="Mínimo 6 caracteres" />
+							<small class="form-text text-danger" th:if="${#fields.hasErrors('contrasena')}"
+								th:errors="*{contrasena}"></small>
+						</div>
+						<a th:href="@{/profesores/listar}" class="btn btn-secondary">Volver</a>
+						<button type="submit" class="btn btn-primary">Guardar</button>
+					</form>
 				</div>
-				<div class="form-group">
-					<label for="apellido">Apellido:</label>
-					<input type="text" class="form-control" id="apellido" th:field="*{apellido}" />
-					<small class="form-text text-danger" th:if="${#fields.hasErrors('apellido')}"
-						th:errors="*{apellido}"></small>
-				</div>
-				<div class="form-group">
-					<label for="email">Email:</label>
-					<input type="email" class="form-control" id="email" th:field="*{email}" />
-					<small class="form-text text-danger" th:if="${#fields.hasErrors('email')}"
-						th:errors="*{email}"></small>
-				</div>
-				<div class="form-group">
-					<label for="contraseña">Contraseña:</label>
-					<input type="password" class="form-control" id="contraseña" th:field="*{contrasena}"
-						placeholder="Mínimo 6 caracteres" />
-					<small class="form-text text-danger" th:if="${#fields.hasErrors('contrasena')}"
-						th:errors="*{contrasena}"></small>
-				</div>
-				<a th:href="@{/profesores/listar}" class="btn btn-secondary">Volver</a>
-				<button type="submit" class="btn btn-primary">Guardar</button>
-			</form>
+			</div>
 		</div>
 	</div>
 

@@ -19,6 +19,28 @@
 		</div>
 	</div>
 
+	<div th:if="${msgActualizado != null}">
+		<div class="alert alert-success alert-dismissible fade show" role="alert">
+			<strong>Éxito:</strong> <span th:text="${msgActualizado}"></span>
+			<button type="button" class="close" data-dismiss="alert"
+				aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+	</div>
+
+	<div th:if="${errores != null}">
+		<div class="alert alert-danger alert-dismissible fade show" role="alert">
+			<strong>Error:</strong>
+			<ul>
+				<li th:each="error : ${errores}" th:text="${error}"></li>
+			</ul>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+	</div>
+	
 	<div th:if="${error != null}">
 		<div class="alert alert-danger alert-dismissible fade show"
 			role="alert">

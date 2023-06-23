@@ -18,60 +18,66 @@
 	<!-- Barra de navegación -->
 	<nav th:replace="~{navbar :: navbar}"></nav>
 
-	<!-- Alertas -->
-	<div th:replace="~{flash :: flash}"></div>
-
-	<div class="my-2 py-2 rounded row">
+	<div class="row my-3 mr-3">
 		<!-- Barra de navegación -->
-		<div class="col">
+		<div class="col col-lg-2">
 			<div th:replace="~{sidebar :: sidebar}"></div>
 		</div>
 
-		<div class="col-lg-9 mr-5" style="background-color: #f8f9fa">
-			<h1>Agregar Curso</h1>
-			<form th:action="@{/cursos/guardar}" th:object="${curso}" method="post">
-				<!-- 			NOMBRE DEL CURSO -->
-				<div class="form-group">
-					<label for="nombre">Nombre del curso:</label>
-					<input type="text" class="form-control" id="nombre" th:field="*{nombre}" />
-					<small class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}"
-						th:errors="*{nombre}"></small>
-				</div>
-				<!-- 			DESCRIPCION DEL CURSO -->
-				<div class="form-group">
-					<label for="descripcion">Descripción:</label>
-					<textarea class="form-control" id="descripcion" th:field="*{descripcion}" maxlength="150"
-						placeholder="Máximo 200 caraceteres"></textarea>
-					<small class="form-text text-danger" th:if="${#fields.hasErrors('descripcion')}"
-						th:errors="*{descripcion}"></small>
-				</div>
+		<div class="col">
+			<div class="row">
+				<!-- Alertas -->
+				<div th:replace="~{flash :: flash}"></div>
+			</div>
 
-				<div class="form-group">
-					<label for="fechaInicio">Fecha de Inicio:</label>
-					<input type="datetime-local" class="form-control" id="fechaInicio" th:field="*{fechaInicio}"
-						pattern="yyyy-MM-dd'T'HH:mm" required/>
-				</div>
+			<div class="row">
+				<div class="col rounded border" style="background-color: #f8f9fa">
+					<h1>Agregar Curso</h1>
+					<form th:action="@{/cursos/guardar}" th:object="${curso}" method="post">
+						<!-- 			NOMBRE DEL CURSO -->
+						<div class="form-group">
+							<label for="nombre">Nombre del curso:</label>
+							<input type="text" class="form-control" id="nombre" th:field="*{nombre}" />
+							<small class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}"
+								th:errors="*{nombre}"></small>
+						</div>
+						<!-- 			DESCRIPCION DEL CURSO -->
+						<div class="form-group">
+							<label for="descripcion">Descripción:</label>
+							<textarea class="form-control" id="descripcion" th:field="*{descripcion}" maxlength="150"
+								placeholder="Máximo 200 caraceteres"></textarea>
+							<small class="form-text text-danger" th:if="${#fields.hasErrors('descripcion')}"
+								th:errors="*{descripcion}"></small>
+						</div>
 
-				<div class="form-group">
-					<label for="fechaFinalizacion">Fecha de Finalización:</label>
-					<input type="datetime-local" class="form-control" id="fechaFinalizacion"
-						th:field="*{fechaFinalizacion}" pattern="yyyy-MM-dd'T'HH:mm" required>
-					<small class="form-text text-danger" th:if="${#fields.hasErrors('fechaFinalizacion')}"
-						th:errors="*{fechaFinalizacion}"></small>
-				</div>
+						<div class="form-group">
+							<label for="fechaInicio">Fecha de Inicio:</label>
+							<input type="datetime-local" class="form-control" id="fechaInicio" th:field="*{fechaInicio}"
+								pattern="yyyy-MM-dd'T'HH:mm" required />
+						</div>
 
-				<div class="form-group">
-					<label for="profesores">Profesores:</label>
-					<select class="form-control" id="idProfesor" th:field="*{profesor.idProfesor}">
-						<option th:each="profesor : ${listaProfesores}" th:value="${profesor.idProfesor}"
-							th:text="${profesor.nombre + ' ' + profesor.apellido}">
-						</option>
-					</select>
-				</div>
+						<div class="form-group">
+							<label for="fechaFinalizacion">Fecha de Finalización:</label>
+							<input type="datetime-local" class="form-control" id="fechaFinalizacion"
+								th:field="*{fechaFinalizacion}" pattern="yyyy-MM-dd'T'HH:mm" required>
+							<small class="form-text text-danger" th:if="${#fields.hasErrors('fechaFinalizacion')}"
+								th:errors="*{fechaFinalizacion}"></small>
+						</div>
 
-				<a th:href="@{/cursos/listar}" class="btn btn-secondary">Volver</a>
-				<button type="submit" class="btn btn-primary">Guardar</button>
-			</form>
+						<div class="form-group">
+							<label for="profesores">Profesores:</label>
+							<select class="form-control" id="idProfesor" th:field="*{profesor.idProfesor}">
+								<option th:each="profesor : ${listaProfesores}" th:value="${profesor.idProfesor}"
+									th:text="${profesor.nombre + ' ' + profesor.apellido}">
+								</option>
+							</select>
+						</div>
+
+						<a th:href="@{/cursos/listar}" class="btn btn-secondary">Volver</a>
+						<button type="submit" class="btn btn-primary">Guardar</button>
+					</form>
+				</div>
+			</div>
 		</div>
 	</div>
 

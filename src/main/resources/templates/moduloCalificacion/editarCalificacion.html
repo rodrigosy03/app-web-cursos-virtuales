@@ -18,51 +18,60 @@
 	<!-- Barra de navegación -->
 	<nav th:replace="~{navbar :: navbar}"></nav>
 
-	<!-- Alertas -->
-	<div th:replace="~{flash :: flash}"></div>
-
-	<div class="my-2 py-2 rounded row">
+	<div class="row my-3 mr-3">
 		<!-- Barra de navegación -->
-		<div class="col">
+		<div class="col col-lg-2">
 			<div th:replace="~{sidebar :: sidebar}"></div>
 		</div>
 
-		<div class="col-lg-9 mr-5" style="background-color: #f8f9fa">
-			<h1>
-				Editar Calificacion: <span th:text="${idCalificacion}"></span>
-			</h1>
+		<div class="col">
+			<div class="row">
+				<!-- Alertas -->
+				<div th:replace="~{flash :: flash}"></div>
+			</div>
 
-			<form th:action="@{/calificaciones/guardar}" th:object="${calificacion}" method="POST">
-				<div class="form-group">
-					<label for="idCalificacion">ID:</label>
-					<input type="text" readonly="readonly" class="form-control" id="idCalificacion"
-						th:field="*{idCalificacion}" />
-				</div>
-				<div class="form-group">
-					<label for="estudiantes">Estudiante:</label>
-					<select class="form-control" id="idEstudiante" th:field="*{estudiante.idEstudiante}">
-						<option th:each="estudiante : ${listaEstudiantes}" th:value="${estudiante.idEstudiante}"
-							th:text="${estudiante.nombre + ' ' + estudiante.apellido}"
-							th:selected="${estudiante.idEstudiante == calificacion.estudiante.idEstudiante}"></option>
-					</select>
-				</div>
-				<div class="form-group">
-					<label for="cursos">Cursos:</label>
-					<select class="form-control" id="idCurso" th:field="*{curso.idCurso}">
-						<option th:each="curso : ${listaCursos}" th:value="${curso.idCurso}" th:text="${curso.nombre}"
-							th:selected="${curso.idCurso == calificacion.curso.idCurso}"></option>
-					</select>
-				</div>
-				<div class="form-group">
-					<label for="nota">Nota:</label>
-					<input type="number" step="0.01" class="form-control" id="nota" th:field="*{nota}" />
-					<small class="form-text text-danger" th:if="${#fields.hasErrors('nota')}"
-						th:errors="*{nota}"></small>
-				</div>
+			<div class="row">
+				<div class="col rounded border" style="background-color: #f8f9fa">
+					<h1>
+						Editar Calificacion: <span th:text="${idCalificacion}"></span>
+					</h1>
 
-				<button type="submit" class="btn btn-primary">Guardar</button>
-				<a href="/calificaciones/listar" class="btn btn-danger">Cancelar</a>
-			</form>
+					<form th:action="@{/calificaciones/guardar}" th:object="${calificacion}" method="POST">
+						<input type="hidden" th:field="*{idCalificacion}" />
+						<div class="form-group">
+							<label for="idCalificacion">ID:</label>
+							<input type="text" readonly="readonly" class="form-control" id="idCalificacion"
+								th:field="*{idCalificacion}" />
+						</div>
+						<div class="form-group">
+							<label for="estudiantes">Estudiante:</label>
+							<select class="form-control" id="idEstudiante" th:field="*{estudiante.idEstudiante}">
+								<option th:each="estudiante : ${listaEstudiantes}" th:value="${estudiante.idEstudiante}"
+									th:text="${estudiante.nombre + ' ' + estudiante.apellido}"
+									th:selected="${estudiante.idEstudiante == calificacion.estudiante.idEstudiante}">
+								</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="cursos">Cursos:</label>
+							<select class="form-control" id="idCurso" th:field="*{curso.idCurso}">
+								<option th:each="curso : ${listaCursos}" th:value="${curso.idCurso}"
+									th:text="${curso.nombre}"
+									th:selected="${curso.idCurso == calificacion.curso.idCurso}"></option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="nota">Nota:</label>
+							<input type="number" step="0.01" class="form-control" id="nota" th:field="*{nota}" />
+							<small class="form-text text-danger" th:if="${#fields.hasErrors('nota')}"
+								th:errors="*{nota}"></small>
+						</div>
+
+						<button type="submit" class="btn btn-primary">Guardar</button>
+						<a href="/calificaciones/listar" class="btn btn-danger">Cancelar</a>
+					</form>
+				</div>
+			</div>
 		</div>
 	</div>
 
