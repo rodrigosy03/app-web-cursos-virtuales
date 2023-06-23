@@ -1,18 +1,17 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Agregar Calificacion</title>
-	
+	<title>Listar Profesores</title>
+
 	<!-- Enlaces a los archivos CSS -->
 	<link rel="stylesheet" type="text/css" href="../css/index.css">
-	
+
 	<!-- Enlaces a Bootstrap -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
-	<!-- Enlaces a Fontawesome -->
-	<script src="https://kit.fontawesome.com/c7ba06f67b.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -22,44 +21,61 @@
 	<!-- Alertas -->
 	<div th:replace="~{flash :: flash}"></div>
 
-	<div class="container">
-		<h1>Agregar Calificacion</h1>
-		<form th:action="@{/calificaciones/guardar}" th:object="${calificacion}" method="POST">
-			
-			<div class="form-group">
-				<label for="estudiantes">Estudiantes:</label> 
+	<div class="my-2 py-2 rounded row">
+		<!-- Barra de navegación -->
+		<div class="col">
+			<div th:replace="~{sidebar :: sidebar}"></div>
+		</div>
+
+		<div class="col-lg-9 mr-5" style="background-color: #f8f9fa">
+			<h1>Agregar Calificacion</h1>
+			<form th:action="@{/calificaciones/guardar}" th:object="${calificacion}" method="POST">
+
+				<div class="form-group">
+					<label for="estudiantes">Estudiantes:</label>
 					<select class="form-control" id="idEstudiante" th:field="*{estudiante.idEstudiante}">
-					<option th:each="estudiante : ${listaEstudiantes}"
-						th:value="${estudiante.idEstudiante}" th:text="${estudiante.nombre + ' ' + estudiante.apellido}">
-					</option>
-				</select>
-			</div>
-			
-			<div class="form-group">
-				<label for="cursos">Cursos:</label> 
+						<option th:each="estudiante : ${listaEstudiantes}" th:value="${estudiante.idEstudiante}"
+							th:text="${estudiante.nombre + ' ' + estudiante.apellido}">
+						</option>
+					</select>
+				</div>
+
+				<div class="form-group">
+					<label for="cursos">Cursos:</label>
 					<select class="form-control" id="idCurso" th:field="*{curso.idCurso}">
-					<option th:each="curso : ${listaCursos}"
-						th:value="${curso.idCurso}" th:text="${curso.nombre}">
-					</option>
-				</select>
-			</div>
-			
-			<div class="form-group">
-				<label for="nota">Nota:</label> 
-				<input type="number" step="0.01" class="form-control" id="nota" th:field="*{nota}"/>
-				<small class="form-text text-danger" th:if="${#fields.hasErrors('nota')}" th:errors="*{nota}"></small>
-			</div>
-			
-			<a th:href="@{/calificaciones/listar}" class="btn btn-secondary">Volver</a>
-			<button type="submit" class="btn btn-primary">Guardar</button>
-		</form>
+						<option th:each="curso : ${listaCursos}" th:value="${curso.idCurso}" th:text="${curso.nombre}">
+						</option>
+					</select>
+				</div>
+
+				<div class="form-group">
+					<label for="nota">Nota:</label>
+					<input type="number" step="0.01" class="form-control" id="nota" th:field="*{nota}" />
+					<small class="form-text text-danger" th:if="${#fields.hasErrors('nota')}"
+						th:errors="*{nota}"></small>
+				</div>
+
+				<a th:href="@{/calificaciones/listar}" class="btn btn-secondary">Volver</a>
+				<button type="submit" class="btn btn-primary">Guardar</button>
+			</form>
+		</div>
 	</div>
 
 	<!-- Agregar scripts de Bootstrap -->
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+	<!-- Mis scripts -->
+	<script>
+		$(".btn-modulos").click(function () {
+			$(this).toggleClass("collapsed");
+			$(this).find("i").toggleClass("fa-chevron-right fa-chevron-down");
+		});
+	</script>
+
+	<!-- Enlaces a Fontawesome -->
+	<script src="https://kit.fontawesome.com/c7ba06f67b.js" crossorigin="anonymous"></script>
 </body>
+
 </html>

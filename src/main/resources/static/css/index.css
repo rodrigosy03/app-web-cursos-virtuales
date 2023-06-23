@@ -4,7 +4,13 @@ body {
 	color: #333;
 	font-size: 16px
 }
-
+a{
+	color: black;
+	text-decoration: none;
+}
+nav-item {
+	color: black;
+}
 .section-1{
 	background-color: #f8f8f8;	
 }
